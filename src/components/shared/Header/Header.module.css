@@ -1,0 +1,20 @@
+.Button__appbar {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    outline: none;
+    text-decoration: none;
+    font-family: 'roboto';
+}
+
+.Button__appbar:hover {
+    color: #a1a1a1;
+}
