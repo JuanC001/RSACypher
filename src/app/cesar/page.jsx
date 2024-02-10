@@ -24,9 +24,9 @@ function Page() {
     const newText = texto.toUpperCase().split('').map((char, index) => {
 
       if (char === ' ') return ''
-      const alphabetLenght = alphabet.length + 1
+      const alphabetLenght = alphabet.length
       const charIndex = alphabet.indexOf(char) + parseInt(desplazamiento)
-      const newCharIndex = charIndex % alphabetLenght
+      const newCharIndex = ((charIndex % alphabetLenght) + alphabetLenght) % alphabetLenght
       const newChar = alphabet[newCharIndex]
 
       return newChar
@@ -37,28 +37,24 @@ function Page() {
 
   }
 
-  const decifrar = (texto, desplazamiento) => {
+  const modulo = (n, m) => {
+    return ((n % m) + m) % m
+  }
+
+  const decifrar = (texto, dp) => {
 
     const alphabet = isUS ? ALPHABET_US : ALPHABET_ES
 
     const newText = texto.toUpperCase().split('').map((char, index) => {
 
-      console.log(char)
+      console.log(char, dp)
 
       if (char === ' ') return ''
 
-      const alphabetLenght = alphabet.length + 1
-      const charIndex = alphabet.indexOf(char) - parseInt(desplazamiento)
-      const newCharIndex = ((charIndex % alphabetLenght) + alphabetLenght) % alphabetLenght
+      const alphabetLenght = alphabet.length
+      const charIndex = alphabet.indexOf(char) - parseInt(dp)
+      const newCharIndex = modulo(charIndex, alphabetLenght)
       const newChar = alphabet[newCharIndex]
-
-      console.log({
-        char,
-        charIndex,
-        newCharIndex,
-        newChar
-      
-      })
 
       return newChar
     })
@@ -103,7 +99,7 @@ function Page() {
 
       <Divider />
 
-      <Typography variant='h4' textAlign={'end'}>Decifrado</Typography>
+      <Typography variant='h4' textAlign={'end'}>Descifrado</Typography>
 
       <TextField label='Texto Cifrado' variant='outlined' margin='normal' fullWidth multiline rows={5} onChange={e => setTextoDecifrar(e.target.value)} value={textoDecifrar} />
       <TextField label='Desplazamiento' variant='outlined' margin='normal' fullWidth type='number' onChange={e => { if (e.target.value >= 0) setDesplazamiento2(e.target.value) }} value={desplazamiento2} />
