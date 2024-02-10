@@ -24,7 +24,7 @@ function Page() {
 
   const cifrar = (texto, clave) => {
     const alphabet = isUS ? ALPHABET_US : ALPHABET_ES
-    const alphabetLenght = alphabet.length + 1
+    const alphabetLenght = alphabet.length
     const claveArray = clave.toUpperCase().split('')
     const textoCorregido = removerEspacios(texto)
 
@@ -42,7 +42,7 @@ function Page() {
 
   const decifrar = (texto, clave) => {
     const alphabet = isUS ? ALPHABET_US : ALPHABET_ES
-    const alphabetLenght = alphabet.length + 1
+    const alphabetLenght = alphabet.length
     const claveArray = clave2.toUpperCase().split('')
     const textoCorregido = removerEspacios(texto)
 
@@ -63,7 +63,7 @@ function Page() {
   }, [isUS, clave, textoCifrar])
 
   useEffect(() => {
-    decifrar(textoCifrado, clave)
+    decifrar(textoDecifrar, clave)
   }, [isUS, clave2, textoDecifrar])
 
   return (
