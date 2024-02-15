@@ -3,7 +3,6 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(req, res) {
 
-
     const { textoCifrar } = await req.json()
 
     console.log('Cifrando:')
@@ -52,7 +51,7 @@ export async function POST(req, res) {
         e = bigInt.randBetween(2, phi_n);
     }
 
-    const clavePublica = { e, n }
+    const clavePublica = e
     console.log('Llave publica:')
     console.log(clavePublica)
 
@@ -61,20 +60,21 @@ export async function POST(req, res) {
     // x * e mod (Phi(n)) = 1
     let d = bigInt(e).modInv(phi_n);
 
-    const clavePrivada = { d, n }
+    const clavePrivada = d
 
 
     console.log('Cifrando?')
+
     const textoCifrado = textoCifrar.split('').map((c) => {
-        console.log(c)
+        if (c === ' ') return ''
         const m = bigInt(c.charCodeAt(0));
         const r = m.modPow(e, n);
+        console.log('Cifrando: ' + c + ' -> ' + r.toString())
         return r;
     })
 
     console.log('Cifrado:')
-    console.log(textoCifrado)
+    console.log(textoCifrado.join(' '))
 
-
-    return NextResponse.json({ p, q, n, phi_n, e, clavePublica, clavePrivada, textoCifrado });
+    return NextResponse.json({ p, q, n, phi_n, e, clavePublica, clavePrivada, textoCifrado: textoCifrado.join(' ') });
 }
