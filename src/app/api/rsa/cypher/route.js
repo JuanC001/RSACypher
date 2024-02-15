@@ -76,5 +76,5 @@ export async function POST(req, res) {
     console.log(textoCifrado)
 
 
-    return NextResponse.json({ p, q, n, phi_n, e, clavePublica, clavePrivada, });
+    return NextResponse.json({ p, q, n, phi_n, e, clavePublica, clavePrivada, textoCifrado });
 }
