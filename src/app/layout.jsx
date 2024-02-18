@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 
       <body className={inter.className}>
         <Header />
-        <Box component='main' mt={10} maxWidth={'800px'} mx={'auto'} height={'90vh'}>
+        <Box component='main' mt={10} maxWidth={'900px'} mx={'auto'} height={'90vh'}>
           {children}
         </Box>
       </body>
