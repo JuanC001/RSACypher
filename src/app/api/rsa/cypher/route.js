@@ -4,10 +4,6 @@ import { NextResponse, NextRequest } from "next/server";
 export async function POST(req, res) {
 
     const { textoCifrar } = await req.json()
-
-    console.log('Cifrando:')
-    console.log(textoCifrar)
-
     const isPrime = (num) => {
 
         const r = bigInt(num).isPrime()
@@ -15,8 +11,15 @@ export async function POST(req, res) {
 
     }
 
-    const min = "1000000000000000000000000000000000000000000000000"
-    const max = "10000000000000000000000000000000000000000000000000"
+    /*
+        const min2 = "1"
+        const max2 = "100"
+        const min3 = "1000000000000000000000000000000000000000000000000"
+        const max3 = "10000000000000000000000000000000000000000000000000"
+
+    */
+    const min = "1000000000000"
+    const max = "10000000000000"
 
     let p = 0;
     let q = 0;
@@ -37,6 +40,11 @@ export async function POST(req, res) {
         }
 
     }
+    //p = bigInt('30762542250301270692051460539586166927291732754961');
+    //q = bigInt('29927402397991286489627837734179186385188296382227');
+
+    console.log('p:', p)
+    console.log('q:', q)
 
     n = bigInt(p).multiply(q);
     phi_n = bigInt(p - 1).multiply(q - 1);
@@ -51,6 +59,8 @@ export async function POST(req, res) {
         e = bigInt.randBetween(2, phi_n);
     }
 
+    e = 65537
+
     const clavePublica = e
     console.log('Llave publica:')
     console.log(clavePublica)
@@ -61,7 +71,6 @@ export async function POST(req, res) {
     let d = bigInt(e).modInv(phi_n);
 
     const clavePrivada = d
-
 
     console.log('Cifrando?')
 
