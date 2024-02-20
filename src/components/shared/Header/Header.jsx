@@ -30,6 +30,10 @@ export const Header = () => {
                             RSA
                         </Link>
 
+                        <Link href='/breakingvigeniere' className={styles.Button__appbar}>
+                            Breaking Vigeniere
+                        </Link>
+
                         <a href='https://criptoanalisis-test.vercel.app/' className={styles.Button__appbar}>Afin</a>
 
                     </Stack>
